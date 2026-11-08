@@ -7,6 +7,7 @@
 import SwiftUI
 import WidgetKit
 import CalendarXLib
+import AppIntents
 
 @main
 struct CalendarXWidgetBundle: WidgetBundle {
@@ -14,6 +15,7 @@ struct CalendarXWidgetBundle: WidgetBundle {
     var body: some Widget {
         LargeWidget()
         LunarDayWidget()
+        DailyQuoteWidget()
     }
 }
 
@@ -23,7 +25,7 @@ struct LunarDayWidget: Widget {
             LunarDayEntryView(entry: entry)
         }
         .configurationDisplayName("Ngày âm lịch")
-        .description("Ngày âm hôm nay, năm Can Chi và ngày lễ Việt Nam.")
+        .description("Ngày âm hôm nay, năm Can Chi và danh ngôn có nút Shuffle.")
         .supportedFamilies([.systemSmall, .systemMedium])
     }
 }
@@ -48,31 +50,64 @@ struct LunarDayProvider: TimelineProvider {
 
 struct LunarDayEntryView: View {
     @Environment(\.widgetFamily) private var family
+    @AppStorage(DailyQuoteStore.advanceKey, store: .group) private var quoteAdvance = 0
     let entry: LunarDayEntry
 
     var body: some View {
-        HStack(spacing: 14) {
-            LunarSummaryView(date: entry.date, compact: true)
-            if family == .systemMedium {
-                Rectangle().fill(.secondary.opacity(0.15)).frame(width: 1)
-                VStack(alignment: .leading, spacing: 10) {
-                    Text(entry.date, format: .dateTime.weekday(.wide).locale(.vi))
-                        .font(.caption.weight(.semibold))
-                    Text("Ngày " + entry.date.canChiDay)
-                        .font(.caption)
-                        .foregroundStyle(.secondary)
-                    ForEach(FestivalStore().all(date: entry.date).prefix(2), id: \.self) { festival in
-                        Text(festival)
-                            .font(.caption.weight(.medium))
-                            .foregroundStyle(Color.accentColor)
-                    }
-                }
-                .frame(maxWidth: .infinity, alignment: .leading)
+        LunarDayContentView(
+            date: entry.date,
+            quote: DailyQuoteStore.quote(for: entry.date, advance: quoteAdvance),
+            showQuote: family == .systemMedium
+        ) {
+            Button(intent: ShuffleQuoteIntent()) {
+                Image(systemName: "shuffle").padding(3)
             }
+            .buttonStyle(.plain)
+            .accessibilityLabel("Đổi câu danh ngôn")
         }
         .accentColor(Color(lightHex: "B13D36", darkHex: "F19B88"))
         .environment(\.locale, .vi)
         .containerBackground(for: .widget) { Color(lightHex: "FBF8F1", darkHex: "242521") }
         .widgetURL(URL(string: "amlich://today"))
+    }
+}
+
+struct DailyQuoteWidget: Widget {
+    var body: some WidgetConfiguration {
+        StaticConfiguration(kind: "AmLich.Quote", provider: LunarDayProvider()) { entry in
+            DailyQuoteEntryView(entry: entry)
+        }
+        .configurationDisplayName("Mỗi ngày một câu")
+        .description("Danh ngôn tiếng Việt, xáo trộn mỗi ngày hoặc bấm Shuffle để đổi câu.")
+        .supportedFamilies([.systemSmall, .systemMedium])
+    }
+}
+
+struct DailyQuoteEntryView: View {
+    @AppStorage(DailyQuoteStore.advanceKey, store: .group) private var quoteAdvance = 0
+    let entry: LunarDayEntry
+
+    var body: some View {
+        DailyQuoteView(quote: DailyQuoteStore.quote(for: entry.date, advance: quoteAdvance), compact: true, showsSourceLink: false) {
+            Button(intent: ShuffleQuoteIntent()) {
+                Image(systemName: "shuffle").padding(3)
+            }
+            .buttonStyle(.plain)
+            .accessibilityLabel("Đổi câu danh ngôn")
+        }
+        .accentColor(Color(lightHex: "B13D36", darkHex: "F19B88"))
+        .containerBackground(for: .widget) { Color(lightHex: "FBF8F1", darkHex: "242521") }
+        .widgetURL(URL(string: "amlich://today"))
+    }
+}
+
+@MainActor
+struct ShuffleQuoteIntent: AppIntent {
+    nonisolated(unsafe) static var title: LocalizedStringResource = "Đổi câu danh ngôn"
+
+    func perform() async throws -> some IntentResult {
+        DailyQuoteStore.shuffle()
+        WidgetCenter.shared.reloadAllTimelines()
+        return .result()
     }
 }

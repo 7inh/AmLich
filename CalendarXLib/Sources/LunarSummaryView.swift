@@ -52,3 +52,58 @@ public struct LunarSummaryView: View {
         .accessibilityElement(children: .combine)
     }
 }
+
+/// Shared by WidgetKit and the native preview renderer.
+public struct LunarDayContentView<Controls: View>: View {
+    public let date: Date
+    public let quote: DailyQuote
+    public let showQuote: Bool
+    private let controls: Controls
+
+    public init(date: Date, quote: DailyQuote, showQuote: Bool, @ViewBuilder controls: () -> Controls) {
+        self.date = date
+        self.quote = quote
+        self.showQuote = showQuote
+        self.controls = controls()
+    }
+
+    public var body: some View {
+        HStack(spacing: 12) {
+            if showQuote {
+                dateStamp
+                    .frame(width: 104, alignment: .leading)
+                Rectangle().fill(.secondary.opacity(0.15)).frame(width: 1)
+                DailyQuoteView(quote: quote, compact: true, showsSourceLink: false) { controls }
+            } else {
+                LunarSummaryView(date: date, compact: true)
+            }
+        }
+    }
+
+    private var dateStamp: some View {
+        let lunar = date.vietnameseLunarDate
+        return VStack(alignment: .leading, spacing: 6) {
+            Label("ÂM LỊCH · UTC+7", systemImage: "moon.stars.fill")
+                .font(.system(size: 8, weight: .semibold))
+                .foregroundStyle(Color.accentColor)
+                .lineLimit(1)
+                .minimumScaleFactor(0.8)
+            HStack(alignment: .firstTextBaseline, spacing: 3) {
+                Text("\(lunar.day)")
+                    .font(.system(size: 44, weight: .light, design: .rounded))
+                    .monospacedDigit()
+                Text("/\(lunar.month)" + (lunar.isLeapMonth ? "N" : ""))
+                    .font(.system(size: 17))
+                    .foregroundStyle(.secondary)
+            }
+            Text(lunar.yearName)
+                .font(.system(size: 12, weight: .semibold))
+            Text(date, format: .dateTime.day().month().year().locale(.vi))
+                .font(.system(size: 10))
+                .foregroundStyle(.secondary)
+                .lineLimit(1)
+                .minimumScaleFactor(0.8)
+        }
+        .foregroundStyle(.primary)
+    }
+}

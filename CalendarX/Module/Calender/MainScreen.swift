@@ -7,6 +7,7 @@
 
 import CalendarXLib
 import SwiftUI
+import WidgetKit
 
 struct MainScreen: View {
 
@@ -21,6 +22,9 @@ struct MainScreen: View {
 
     @ObservedObject
     var viewModel: MainViewModel
+
+    @AppStorage(DailyQuoteStore.advanceKey, store: .group)
+    private var quoteAdvance = 0
 
     private var calendar: Calendar {
         viewModel.calendar.firstWeekday = calendarStore.weekday.rawValue
@@ -46,6 +50,22 @@ struct MainScreen: View {
             }
             .padding(12)
             .background(Color.accentColor.opacity(0.06), in: RoundedRectangle(cornerRadius: 12))
+
+            DailyQuoteView(quote: DailyQuoteStore.quote(for: Date(), advance: quoteAdvance)) {
+                Button {
+                    quoteAdvance = DailyQuoteStore.shuffle()
+                    WidgetCenter.shared.reloadAllTimelines()
+                } label: {
+                    Image(systemName: "shuffle")
+                        .padding(4)
+                        .contentShape(Rectangle())
+                }
+                .buttonStyle(.plain)
+                .help("Đổi câu danh ngôn")
+                .accessibilityLabel("Đổi câu danh ngôn")
+            }
+            .padding(10)
+            .background(Color.accentColor.opacity(0.04), in: RoundedRectangle(cornerRadius: 10))
 
             CalendarView(
             date: viewModel.date,

@@ -125,9 +125,20 @@ extension CalendarXDelegate {
             do {
                 appStore.theme = scheme == .light ? .light : .dark
                 let suffix = scheme == .light ? "light" : "dark"
-                try render(MainScreen(viewModel: MainViewModel()), name: "calendar-" + suffix, width: 365, height: 485, scheme: scheme)
+                try render(MainScreen(viewModel: MainViewModel()), name: "calendar-" + suffix, width: 365, height: .mainHeight, scheme: scheme)
                 try render(SettingsScreen(), name: "settings-" + suffix, width: 365, height: 452, scheme: scheme)
                 try render(LunarSummaryView(date: Date(), compact: true).padding(16), name: "day-widget-" + suffix, width: 170, height: 170, scheme: scheme)
+                let quote = DailyQuoteStore.quote(for: Date(), advance: 0)
+                let longest = DailyQuoteStore.quotes.max { ($0.text.count + $0.author.count) < ($1.text.count + $1.author.count) }!
+                try render(DailyQuoteView(quote: quote, compact: true, showsSourceLink: false) {
+                    Button {} label: { Image(systemName: "shuffle").padding(3) }.buttonStyle(.plain)
+                }.padding(16), name: "quote-widget-" + suffix, width: 170, height: 170, scheme: scheme)
+                try render(DailyQuoteView(quote: longest, compact: true, showsSourceLink: false) {
+                    Button {} label: { Image(systemName: "shuffle").padding(3) }.buttonStyle(.plain)
+                }.padding(16), name: "quote-widget-long-" + suffix, width: 170, height: 170, scheme: scheme)
+                try render(LunarDayContentView(date: Date(), quote: quote, showQuote: true) {
+                    Button {} label: { Image(systemName: "shuffle").padding(3) }.buttonStyle(.plain)
+                }.padding(16), name: "day-widget-medium-" + suffix, width: 360, height: 170, scheme: scheme)
             }
             print("Rendered previews to \(directory.path)")
         } catch {

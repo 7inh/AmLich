@@ -19,5 +19,6 @@ fi
 mkdir -p dist
 ditto "build/DerivedData/Build/Products/$configuration/AmLich.app" dist/AmLich.app
 codesign --verify --deep --strict dist/AmLich.app
-ditto -c -k --sequesterRsrc --keepParent dist/AmLich.app dist/AmLich-0.1.0-macOS.zip
+version=$(/usr/libexec/PlistBuddy -c "Print :CFBundleShortVersionString" dist/AmLich.app/Contents/Info.plist)
+ditto -c -k --sequesterRsrc --keepParent dist/AmLich.app "dist/AmLich-$version-macOS.zip"
 printf '\nBuilt: %s/dist/AmLich.app\n' "$PWD"
