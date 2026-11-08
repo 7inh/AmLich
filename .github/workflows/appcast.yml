@@ -1,29 +1,11 @@
-# This is a basic workflow to help you get started with Actions
-
-name: Appcast
-
-
+# The fork has no Sparkle feed. The upstream publishing workflow is intentionally disabled.
+name: Upstream appcast (disabled)
 on:
-  
   workflow_dispatch:
-
+permissions:
+  contents: read
 jobs:
-
-  build:
-    # The type of runner that the job will run on
+  info:
     runs-on: ubuntu-latest
-
     steps:
-     
-          
-      - name: Rebuild 🚀 
-        uses: actions/github-script@v7
-        with:
-          github-token: ${{ secrets.PERSONAL_TOKEN }}
-          script: |
-            github.rest.repos.requestPagesBuild({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-            })
-
-          
+      - run: echo 'This fork does not publish or consume the upstream CalendarX update feed.'

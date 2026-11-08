@@ -40,7 +40,7 @@ class Updater: NSObject {
     init(appStore: AppStore) {
         self.appStore = appStore
         super.init()
-        updaterController.startUpdater()
+        // A signed update feed can be configured when this fork has its first release.
         UNUserNotificationCenter.current().delegate = self
     }
 

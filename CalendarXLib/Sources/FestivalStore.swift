@@ -1,103 +1,51 @@
-//
-//  FestivalStore.swift
-//  CalendarXLib
-//
-//  Created by zm on 2024/12/30.
-//
-
 import Foundation
 
 @MainActor
 public enum Tiaoxiu: Int, Decodable {
-
-    //    0,1,2
     case ordinary, ban, xiu
-
     public var isOrdinary: Bool { self == .ordinary }
     public var isXiu: Bool { self == .xiu }
-
-    public var description: String {
-        switch self {
-        case .ban: "班"
-        case .xiu: "休"
-        default: ""
-        }
-    }
-
+    public var description: String { self == .xiu ? "•" : "" }
 }
 
+/// Vietnamese cultural festivals, not government workday/substitute-day schedules.
 @MainActor
 public struct FestivalStore {
+    private static let lunarFestivals = [
+        "0101": "Tết Nguyên đán", "0102": "Mùng 2 Tết", "0103": "Mùng 3 Tết",
+        "0115": "Tết Nguyên tiêu", "0310": "Giỗ Tổ Hùng Vương", "0415": "Lễ Phật Đản",
+        "0505": "Tết Đoan ngọ", "0715": "Lễ Vu Lan", "0815": "Tết Trung thu",
+        "0909": "Tết Trùng cửu", "1223": "Ông Công Ông Táo"
+    ]
+    private static let solarFestivals = [
+        "0101": "Tết Dương lịch", "0214": "Lễ Tình nhân", "0308": "Quốc tế Phụ nữ",
+        "0430": "Ngày Thống nhất", "0501": "Quốc tế Lao động", "0601": "Quốc tế Thiếu nhi",
+        "0902": "Quốc khánh", "1020": "Phụ nữ Việt Nam", "1120": "Nhà giáo Việt Nam",
+        "1225": "Giáng sinh"
+    ]
 
-    typealias TypeA = [String: String]
-    typealias TypeB = [String: [String]]
-    typealias TypeC = [String: [String: Tiaoxiu]]
-
-    @MainActor
-    enum Lunar {
-        static let titles = [
-            "立春", "雨水", "惊蛰", "春分", "清明", "谷雨",
-            "立夏", "小满", "芒种", "夏至", "小暑", "大暑",
-            "立秋", "处暑", "白露", "秋分", "寒露", "霜降",
-            "立冬", "小雪", "大雪", "冬至", "小寒", "大寒",
-        ]
-        static let primary = Bundle.module.jsonModel(resource: "festival_lunar_primary") ?? TypeA()
-        static let jieqi = Bundle.module.jsonModel(resource: "festival_lunar_jieqi") ?? TypeB()
-        static let chuxi = Bundle.module.jsonModel(resource: "festival_lunar_chuxi") ?? TypeA()
-    }
-
-    @MainActor
-    enum Solar {
-        static let all = Bundle.module.jsonModel(resource: "festival_solar_all") ?? TypeB()
-        static let primary = Bundle.module.jsonModel(resource: "festival_solar_primary") ?? TypeA()
-        static let tiaoxiu = Bundle.module.jsonModel(resource: "festival_solar_tiaoxiu") ?? TypeC()
-    }
-
-    @MainActor
-    enum Week {
-        static let all = Bundle.module.jsonModel(resource: "festival_week_all") ?? TypeB()
-        static let primary = Bundle.module.jsonModel(resource: "festival_week_primary") ?? TypeA()
-        static let speical = Bundle.module.jsonModel(resource: "festival_week_special") ?? TypeA()
-    }
-
-    public nonisolated init() {
-
-    }
-}
-
-@MainActor
-extension FestivalStore {
+    public nonisolated init() {}
 
     public func all(date: AppDate) -> [String] {
-
-        let isInvalid = date.isInvalidNextWeekday
-        let speical = isInvalid ? Week.speical[date.sMWKey] : .none
-
-        var all: [String?] = [lunar(date: date), jieqi(date: date)]
-        all.append(contentsOf: Week.all[date.sMWKey] ?? [])
-        all.append(speical)
-        all.append(contentsOf: Solar.all[date.sMDKey] ?? [])
-
-        return all.compactMap(\.self)
+        var result: [String] = []
+        if let festival = lunar(date: date) { result.append(festival) }
+        if let festival = Self.solarFestivals[date.sMDKey] { result.append(festival) }
+        if date.lunarDay == 1 { result.append("Mùng 1") }
+        if date.lunarDay == 15 { result.append("Ngày rằm") }
+        return result
     }
 
-    public func display(date: AppDate) -> String {
-        lunar(date: date) ?? jieqi(date: date) ?? solar(date: date) ?? date.lunarDayTitle
-    }
+    public func display(date: AppDate) -> String { date.lunarDayTitle }
 
-    public func tiaoxiu(date: AppDate) -> Tiaoxiu { Solar.tiaoxiu[date.sYKey]?[date.sMDKey] ?? .ordinary }
+    public func tiaoxiu(date: AppDate) -> Tiaoxiu {
+        lunar(date: date) != nil || Self.solarFestivals[date.sMDKey] != nil ? .xiu : .ordinary
+    }
 
     private func lunar(date: AppDate) -> String? {
-        let key = Lunar.chuxi[date.sYKey] != date.sMDKey ? date.lMDKey : "0100"
-        return Lunar.primary[key]
+        guard !date.isLeapMonth else { return nil }
+        if date.lunarMonth == 12, date.tomorrow.lunarMonth == 1, date.tomorrow.lunarDay == 1 {
+            return "Giao thừa"
+        }
+        return Self.lunarFestivals[date.lMDKey]
     }
-
-    private func jieqi(date: AppDate) -> String? {
-        guard let jq = Lunar.jieqi[date.sYKey] else { return .none }
-        let jqMap = TypeA(uniqueKeysWithValues: zip(jq, Lunar.titles))
-        return jqMap[date.sMDKey] ?? .none
-    }
-
-    private func solar(date: AppDate) -> String? { Week.primary[date.sMWKey] ?? Solar.primary[date.sMDKey] }
-
 }

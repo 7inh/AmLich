@@ -39,7 +39,7 @@ extension [MenubarDateType] {
             if locale.inChinese {
                 ($0 == .lm && $1 == .ld) || ($0 == .sm && $1 == .sd)
             } else {
-                $0 == .lm && $1 == .ld
+                false
             }
         }
         return chunked(by: condition)

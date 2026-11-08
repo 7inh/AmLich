@@ -132,21 +132,15 @@ extension Date {
 
     public var eventsKey: String { "\(year).\(month).\(day)" }
 
-    public var lunarYear: Int {
-        Calendar.chinese.component(.year, from: self)
+    public var vietnameseLunarDate: VietnameseLunarCalendar.LunarDate {
+        VietnameseLunarCalendar.convert(self)
     }
 
-    public var lunarMonth: Int {
-        Calendar.chinese.component(.month, from: self)
-    }
+    public var lunarYear: Int { vietnameseLunarDate.year }
+    public var lunarMonth: Int { vietnameseLunarDate.month }
+    public var lunarDay: Int { vietnameseLunarDate.day }
+    public var isLeapMonth: Bool { vietnameseLunarDate.isLeapMonth }
 
-    public var lunarDay: Int {
-        Calendar.chinese.component(.day, from: self)
-    }
-
-    public var isLeapMonth: Bool {
-        Calendar.chinese.dateComponents([.year, .month, .day], from: self).isLeapMonth ?? false
-    }
 }
 
 extension Date: Swift.RawRepresentable {

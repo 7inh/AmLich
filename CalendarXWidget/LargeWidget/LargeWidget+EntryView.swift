@@ -11,7 +11,7 @@ extension LargeWidget {
         private let eventStore = AppEventStore()
         private let festivalStore = FestivalStore()
 
-        private var date: Date { entry.date }
+        private var date: Date { entry.displayedDate }
         private var locale: Locale { entry.locale }
 
         private var accentColor: Color { entry.accentColor }
@@ -24,16 +24,10 @@ extension LargeWidget {
         }
 
         var body: some View {
-            if #available(macOSApplicationExtension 14.0, *) {
-                content.containerBackground(for: .widget) {
-                    entry.backgroundColor
-                }
-            } else {
-                ZStack {
-                    entry.backgroundColor
-                    content.padding()
-                }
-            }
+            content
+                .containerBackground(for: .widget) { entry.backgroundColor }
+                .widgetURL(URL(string: "amlich://today"))
+                .environment(\.locale, locale)
         }
 
         @ViewBuilder
@@ -111,7 +105,7 @@ extension LargeWidget {
             let inSameMonth = date.inSameMonth(as: appDate)
 
             ZStack {
-                if appDate.inToday {
+                if appDate.isSameDay(as: entry.date) {
                     RoundedRectangle(cornerRadius: 4)
                         .stroke(accentColor, lineWidth: 1)
                 }
@@ -141,6 +135,7 @@ extension LargeWidget {
                             .appForeground(showHolidays ? tiaoxiu.isXiu ? accentColor : .appSecondary : .appSecondary)
                     }
                 }
+                .minimumScaleFactor(0.8)
             }
             .opacity(inSameMonth ? 1 : 0.3)
             .sideLength(40)
@@ -148,37 +143,30 @@ extension LargeWidget {
 
         @ViewBuilder
         private func title() -> some View {
-            if #available(macOSApplicationExtension 14.0, *) {
-                HStack {
+            HStack {
                     Button(intent: LastMonthIntent()) {
                         Image.leftArrow
                             .sideLength(.buttonWidth)
                     }
+                    .accessibilityLabel("Tháng trước")
 
                     Spacer()
                     Button(intent: TodayIntent()) {
                         Text(date.monthSymbol(locale: locale))
                         Text(date.year.description)
                     }
+                    .accessibilityLabel("Hôm nay")
                     Spacer()
 
                     Button(intent: NextMonthIntent()) {
                         Image.rightArrow
                             .sideLength(.buttonWidth)
                     }
+                    .accessibilityLabel("Tháng sau")
                 }
                 .font(.title2)
                 .buttonStyle(.plain)
                 .foregroundStyle(accentColor)
-            } else {
-                HStack {
-                    Text(date.monthSymbol(locale: locale))
-                    Text(date.year.description)
-                }
-                .font(.title2)
-                .appForeground(accentColor)
-            }
         }
     }
-
 }

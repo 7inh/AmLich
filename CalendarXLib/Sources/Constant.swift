@@ -12,8 +12,8 @@ public typealias VoidClosure = () -> Void
 public typealias FailureClosure = (Error) -> Void
 
 extension CGFloat {
-    public static let mainHeight: CGFloat = 300
-    public static let mainWidth: CGFloat = 335
+    public static let mainHeight: CGFloat = 485
+    public static let mainWidth: CGFloat = 365
     public static let popoverWidth: CGFloat = 40
     public static let popoverHeight: CGFloat = 210
     public static let popoverRowHeight: CGFloat = 25
@@ -43,7 +43,12 @@ extension Bundle {
 
 @MainActor
 extension UserDefaults {
-    public static let group = UserDefaults(suiteName: "group.\(Bundle.identifier)")
+    public static let group: UserDefaults? = {
+        let name = ProcessInfo.processInfo.arguments.contains("--render-previews")
+            ? "vn.7inh.amlich.previews"
+            : (Bundle.main.object(forInfoDictionaryKey: "AmLichAppGroup") as? String ?? "vn.7inh.amlich")
+        return UserDefaults(suiteName: name)
+    }()
 }
 
 public enum AppStorageKey {
@@ -100,11 +105,16 @@ extension Image {
 }
 
 extension Calendar {
-    public static let gregorian = Calendar(identifier: .gregorian)
+    public static var gregorian: Calendar {
+        var calendar = Calendar(identifier: .gregorian)
+        calendar.timeZone = .autoupdatingCurrent
+        return calendar
+    }
     public static let chinese = Calendar(identifier: .chinese)
 }
 
 extension Locale {
+    public static let vi = Locale(identifier: "vi_VN")
     public static let en = Locale(identifier: "en_US")
     public static let zh = Locale(identifier: "zh_CN")
     public static let posix = Locale(identifier: "en_US_POSIX")
@@ -134,7 +144,7 @@ extension Notification.Name {
 }
 
 public enum AppLink {
-    public static let gitHub = "https://github.com/ZzzM/CalendarX"
+    public static let gitHub = "https://github.com/7inh/AmLich"
 }
 
 public enum Privacy {

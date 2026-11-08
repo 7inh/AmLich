@@ -35,18 +35,22 @@ class MainViewModel: ObservableObject {
     }
 
     func lastMonth() {
+        guard date.year > Solar.minYear || date.month > 1 else { return }
         date.lastMonth()
     }
 
     func nextMonth() {
+        guard date.year < Solar.maxYear || date.month < 12 else { return }
         date.nextMonth()
     }
 
     func lastYear() {
+        guard date.year > Solar.minYear else { return }
         date.lastYear()
     }
 
     func nextYear() {
+        guard date.year < Solar.maxYear else { return }
         date.nextYear()
     }
 

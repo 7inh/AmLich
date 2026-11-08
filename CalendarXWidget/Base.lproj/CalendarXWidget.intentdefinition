@@ -148,6 +148,16 @@
 					<key>INEnumValueName</key>
 					<string>en_US</string>
 				</dict>
+				<dict>
+					<key>INEnumValueDisplayName</key>
+					<string>Tiếng Việt</string>
+					<key>INEnumValueDisplayNameID</key>
+					<string>amLichVi</string>
+					<key>INEnumValueIndex</key>
+					<integer>4</integer>
+					<key>INEnumValueName</key>
+					<string>vietnamese</string>
+				</dict>
 			</array>
 		</dict>
 		<dict>
@@ -491,7 +501,7 @@
 					<key>INIntentParameterMetadata</key>
 					<dict>
 						<key>INIntentParameterMetadataDefaultValue</key>
-						<string>system</string>
+						<string>vietnamese</string>
 					</dict>
 					<key>INIntentParameterName</key>
 					<string>language</string>
@@ -551,7 +561,7 @@
 					<key>INIntentParameterMetadata</key>
 					<dict>
 						<key>INIntentParameterMetadataDefaultValue</key>
-						<string>sunday</string>
+						<string>monday</string>
 					</dict>
 					<key>INIntentParameterName</key>
 					<string>startWeekOn</string>
@@ -685,7 +695,7 @@
 					<key>INIntentParameterConfigurable</key>
 					<true/>
 					<key>INIntentParameterDisplayName</key>
-					<string>Show Chinese statutory holidays</string>
+					<string>Highlight Vietnamese festivals</string>
 					<key>INIntentParameterDisplayNameID</key>
 					<string>w5cj3i</string>
 					<key>INIntentParameterDisplayPriority</key>

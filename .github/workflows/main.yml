@@ -1,57 +1,17 @@
-name: Mars
-
+name: macOS build
 on:
-  workflow_dispatch:
   push:
-    tags:
-      - '*'
-      
-env:
-  SPARKLE_KEY: ${{ secrets.SPARKLE_KEY }}
-  PERSONAL_TOKEN: ${{ secrets.PERSONAL_TOKEN }}
-  BARK_KEY: ${{ secrets.BARK_KEY }}
-  BARK_HOST: ${{ secrets.BARK_HOST }}
-
+    branches: [master, 'feat/**']
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
 jobs:
-
-  Release:
+  build:
     runs-on: macos-15
     steps:
-
-    - uses: actions/checkout@v4
-      with:
-        fetch-depth: 0
-
-    - name: Create DMG
-      run: |
-        fastlane create_dmg
-
-    - name: Release
-      uses: softprops/action-gh-release@v2
-      if: startsWith(github.ref, 'refs/tags/')
-      with:
-        body_path: ${{ env.LOG_PATH }}
-        files: ${{ env.DMG_PATH }}
-        name: ${{ env.APP_RELEASE_NAME }}
-        tag_name: ${{ env.APP_TAG_NAME }}
-        prerelease: ${{ contains(env.APP_TAG_NAME, 'beta') }}
-
-    - name: Deploy
-      uses: actions/github-script@v7
-      if: startsWith(github.ref, 'refs/tags/')
-      with:
-        github-token: ${{ env.PERSONAL_TOKEN }}
-        script: |
-          github.rest.repos.requestPagesBuild({
-            owner: context.repo.owner,
-              repo: context.repo.repo,
-            })
-
-    - name: Bark
-      uses: shink/bark-action@v2
-      if: success() || failure()
-      with:
-        key: ${{ env.BARK_KEY }}
-        host: ${{ secrets.BARK_HOST }}
-        title: ${{ env.APP_NAME }} ${{ env.APP_TAG_NAME }}
-        body: ${{ job.status }}
+      - uses: actions/checkout@v4
+      - name: Test Vietnamese lunar calendar
+        run: swift test --package-path CalendarXLib
+      - name: Compile macOS app and WidgetKit extensions
+        run: scripts/build-macos.sh

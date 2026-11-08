@@ -12,7 +12,7 @@ import SwiftUI
 class CalendarStore: ObservableObject {
 
     @AppStorage(CalendarStorageKey.weekday, store: .group)
-    var weekday: AppWeekday = .sunday
+    var weekday: AppWeekday = .monday
 
     @AppStorage(CalendarStorageKey.showEvents, store: .group)
     var showEvents: Bool = false

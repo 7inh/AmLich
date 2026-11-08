@@ -120,7 +120,7 @@
 		984963412D22A72C0043E919 /* Appearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Appearance.swift; sourceTree = "<group>"; };
 		984963432D22A8090043E919 /* AppStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStore.swift; sourceTree = "<group>"; };
 		984963452D22C2240043E919 /* MenubarStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenubarStore.swift; sourceTree = "<group>"; };
-		98712FA12B2BB15E005163D4 /* CalendarX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CalendarX.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		98712FA12B2BB15E005163D4 /* CalendarX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AmLich.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		98712FA82B2BB160005163D4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		98712FAB2B2BB160005163D4 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		98712FAD2B2BB160005163D4 /* CalendarX.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CalendarX.entitlements; sourceTree = "<group>"; };
@@ -172,6 +172,10 @@
 		98FFFC4C2B2D18940047B692 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		98FFFC4D2B2D18970047B692 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		98FFFC532B2F7D460047B692 /* Intents.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Intents.framework; path = System/Library/Frameworks/Intents.framework; sourceTree = SDKROOT; };
+		AF1100000000000000000000 /* vi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = vi; path = vi.lproj/Localizable.strings; sourceTree = "<group>"; };
+		AF1100000000000000000001 /* vi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = vi; path = vi.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		AF1100000000000000000002 /* vi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = vi; path = vi.lproj/Localizable.strings; sourceTree = "<group>"; };
+		AF1100000000000000000003 /* vi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = vi; path = vi.lproj/CalendarXWidget.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -500,6 +504,7 @@
 				en,
 				Base,
 				"zh-Hans",
+				vi,
 			);
 			mainGroup = 98712F982B2BB15E005163D4;
 			packageReferences = (
@@ -636,6 +641,7 @@
 			children = (
 				981660252B30DA2B0046558A /* en */,
 				981660272B30DA2C0046558A /* zh-Hans */,
+				AF1100000000000000000002 /* vi */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -646,6 +652,7 @@
 				98A3750A2D68D46B00FC7719 /* Base */,
 				98A3750C2D68D48E00FC7719 /* en */,
 				98A3750E2D68D48F00FC7719 /* zh-Hans */,
+				AF1100000000000000000003 /* vi */,
 			);
 			name = CalendarXWidget.intentdefinition;
 			sourceTree = "<group>";
@@ -655,6 +662,7 @@
 			children = (
 				98FFFC472B2D188F0047B692 /* en */,
 				98FFFC4D2B2D18970047B692 /* zh-Hans */,
+				AF1100000000000000000000 /* vi */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -664,6 +672,7 @@
 			children = (
 				98FFFC4A2B2D18930047B692 /* en */,
 				98FFFC4C2B2D18940047B692 /* zh-Hans */,
+				AF1100000000000000000001 /* vi */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -676,7 +685,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = CalendarXIntentExtension/CalendarXIntentExtension.entitlements;
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 63;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -689,14 +698,15 @@
 					"@executable_path/../Frameworks",
 					"@executable_path/../../../../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				MARKETING_VERSION = 2.3.8;
-				PRODUCT_BUNDLE_IDENTIFIER = com.alpha.calendarx.intentExtension;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 0.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = vn.7inh.amlich.intentExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 6.0;
+				AMLICH_APP_GROUP = "$(DEVELOPMENT_TEAM).vn.7inh.amlich";
 			};
 			name = Debug;
 		};
@@ -705,7 +715,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = CalendarXIntentExtension/CalendarXIntentExtension.entitlements;
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 63;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -718,14 +728,15 @@
 					"@executable_path/../Frameworks",
 					"@executable_path/../../../../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				MARKETING_VERSION = 2.3.8;
-				PRODUCT_BUNDLE_IDENTIFIER = com.alpha.calendarx.intentExtension;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 0.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = vn.7inh.amlich.intentExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 6.0;
+				AMLICH_APP_GROUP = "$(DEVELOPMENT_TEAM).vn.7inh.amlich";
 			};
 			name = Release;
 		};
@@ -785,7 +796,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_KEY_NSCalendarsFullAccessUsageDescription = "";
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -795,6 +806,7 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_STRICT_CONCURRENCY = complete;
 				SWIFT_VERSION = 6.0;
+				AMLICH_APP_GROUP = "$(DEVELOPMENT_TEAM).vn.7inh.amlich";
 			};
 			name = Debug;
 		};
@@ -848,7 +860,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_KEY_NSCalendarsFullAccessUsageDescription = "";
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = macosx;
@@ -856,6 +868,7 @@
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_STRICT_CONCURRENCY = complete;
 				SWIFT_VERSION = 6.0;
+				AMLICH_APP_GROUP = "$(DEVELOPMENT_TEAM).vn.7inh.amlich";
 			};
 			name = Release;
 		};
@@ -869,7 +882,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 63;
+				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"CalendarX/Preview Content\"";
 				DEVELOPMENT_TEAM = "";
@@ -885,13 +898,16 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				MARKETING_VERSION = 2.3.8;
-				PRODUCT_BUNDLE_IDENTIFIER = com.alpha.calendarx;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 0.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = vn.7inh.amlich;
+				PRODUCT_NAME = AmLich;
+				PRODUCT_MODULE_NAME = CalendarX;
+				INFOPLIST_KEY_CFBundleDisplayName = "Âm Lịch";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 6.0;
+				AMLICH_APP_GROUP = "$(DEVELOPMENT_TEAM).vn.7inh.amlich";
 			};
 			name = Debug;
 		};
@@ -905,7 +921,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 63;
+				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"CalendarX/Preview Content\"";
 				DEVELOPMENT_TEAM = "";
@@ -921,13 +937,16 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				MARKETING_VERSION = 2.3.8;
-				PRODUCT_BUNDLE_IDENTIFIER = com.alpha.calendarx;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 0.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = vn.7inh.amlich;
+				PRODUCT_NAME = AmLich;
+				PRODUCT_MODULE_NAME = CalendarX;
+				INFOPLIST_KEY_CFBundleDisplayName = "Âm Lịch";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 6.0;
+				AMLICH_APP_GROUP = "$(DEVELOPMENT_TEAM).vn.7inh.amlich";
 			};
 			name = Release;
 		};
@@ -938,7 +957,7 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = CalendarXWidget/CalendarXWidget.entitlements;
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 63;
+				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_APP_SANDBOX = YES;
@@ -946,7 +965,7 @@
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CalendarXWidget/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = CalendarXWidget;
+				INFOPLIST_KEY_CFBundleDisplayName = "Âm Lịch";
 				INFOPLIST_KEY_NSCalendarsFullAccessUsageDescription = "Used to display calendar events";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -954,14 +973,15 @@
 					"@executable_path/../Frameworks",
 					"@executable_path/../../../../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				MARKETING_VERSION = 2.3.8;
-				PRODUCT_BUNDLE_IDENTIFIER = com.alpha.calendarx.widget;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 0.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = vn.7inh.amlich.widget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 6.0;
+				AMLICH_APP_GROUP = "$(DEVELOPMENT_TEAM).vn.7inh.amlich";
 			};
 			name = Debug;
 		};
@@ -972,7 +992,7 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = CalendarXWidget/CalendarXWidget.entitlements;
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 63;
+				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_APP_SANDBOX = YES;
@@ -980,7 +1000,7 @@
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CalendarXWidget/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = CalendarXWidget;
+				INFOPLIST_KEY_CFBundleDisplayName = "Âm Lịch";
 				INFOPLIST_KEY_NSCalendarsFullAccessUsageDescription = "Used to display calendar events";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -988,14 +1008,15 @@
 					"@executable_path/../Frameworks",
 					"@executable_path/../../../../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				MARKETING_VERSION = 2.3.8;
-				PRODUCT_BUNDLE_IDENTIFIER = com.alpha.calendarx.widget;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 0.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = vn.7inh.amlich.widget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 6.0;
+				AMLICH_APP_GROUP = "$(DEVELOPMENT_TEAM).vn.7inh.amlich";
 			};
 			name = Release;
 		};

@@ -35,6 +35,7 @@ struct RootScreen: View {
             dialogScreen
 
         }
+        .frame(width: .mainWidth, height: .mainHeight)
         .appForeground(.appPrimary)
         .preferredLocale(appStore.locale)
         .envTint(appStore.accentColor)

@@ -6,39 +6,20 @@ extension LargeWidget {
 
     @MainActor
     struct Provider: @preconcurrency IntentTimelineProvider {
-        func placeholder(in context: Context) -> Entry {
-            .init()
-        }
+        func placeholder(in context: Context) -> Entry { .init() }
 
         func getSnapshot(for configuration: Intent, in context: Context, completion: @escaping (Entry) -> Void) {
             completion(.init(configuration: configuration))
         }
 
         func getTimeline(for configuration: Intent, in context: Context, completion: @escaping (Timeline<Entry>) -> Void) {
-            let date = Date()
-
-            if #available(macOSApplicationExtension 14.0, *), date.canUpdateDate {
-                Store.today()
+            let now = Date()
+            // Future entries retain real timeline timestamps, even while browsing another month.
+            let entries = (0..<7).map { offset -> Entry in
+                let timestamp = offset == 0 ? now : Calendar.gregorian.date(byAdding: .day, value: offset - 1, to: now.startOfTomorrow)!
+                return Entry(date: timestamp, displayedDate: offset == 0 ? Store.date : timestamp, configuration: configuration)
             }
-
-            let entry =
-                if #available(macOSApplicationExtension 14.0, *) {
-                    Entry(date: Store.date, configuration: configuration)
-                } else {
-                    Entry(date: date, configuration: configuration)
-                }
-            let timeline = Timeline(
-                entries: [entry],
-                policy: .after(date.startOfTomorrow)
-            )
-            completion(timeline)
+            completion(Timeline(entries: entries, policy: .atEnd))
         }
-    }
-}
-
-@MainActor
-extension Date {
-    var canUpdateDate: Bool {
-        t(use24h: true, showSeconds: false) == "00:00"
     }
 }

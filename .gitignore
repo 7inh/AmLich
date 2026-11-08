@@ -73,3 +73,7 @@ Step.md
 *.dmg
 Gemfile.lock
 fastlane/README.md
+
+# Local distributables and build logs
+dist/
+*.log

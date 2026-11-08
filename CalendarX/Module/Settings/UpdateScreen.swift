@@ -71,7 +71,7 @@ struct UpdateScreen: View {
 
 
         }
-        .frame(height: .mainHeight, alignment: .top)
+        .frame(maxHeight: .infinity, alignment: .top)
         .padding()
     }
 }

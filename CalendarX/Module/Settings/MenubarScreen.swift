@@ -238,11 +238,11 @@ struct DateStyleView: View {
 extension DateStyleView {
     func transform(locale: Locale, type: MenubarDateType) -> String {
         switch type {
-        case .lm: "正月"
-        case .ld: "十五"
-        case .sm: locale.inChinese ? "2月" : "Feb"
+        case .lm: "T1"
+        case .ld: "15"
+        case .sm: locale.identifier.hasPrefix("vi") ? "Tháng 2" : "Feb"
         case .sd: locale.inChinese ? "5日" : "5"
-        case .e: locale.inChinese ? "周日" : "Sun"
+        case .e: locale.identifier.hasPrefix("vi") ? "CN" : "Sun"
         case .a: locale.inChinese ? "下午" : "PM"
         case .t: (use24h ? "20:30" : "8:30") + (showSeconds ? ":30" : "")  // d 24, e sec
         }

@@ -10,7 +10,7 @@ import SwiftUI
 import WidgetKit
 
 struct LargeWidget: Widget {
-    private let kind = "CalendarX.LargeWidget"
+    private let kind = "AmLich.Month"
     private let intent = Intent.self
     private let provider = Provider()
     private let displayName = L10n.LargeWidget.displayName

@@ -1,64 +1,52 @@
-//
-//  LargeWidgetIntent.swift
-//  CalendarXWidget
-//
-//  Created by zm on 2024/1/7.
-//
-
-#if canImport(AppIntents)
 import AppIntents
 import CalendarXLib
-import SwiftUI
-
-@available(macOS 14.0, *)
+import WidgetKit
 
 extension LargeWidget {
-
     @MainActor
     enum Store {
-
-        static var date: Date = .now
-
-        static func lastMonth() {
-            date.lastMonth()
+        private static let defaults = UserDefaults.group ?? .standard
+        private static var todayKey: String { Date().eventsKey }
+        private static var offset: Int {
+            get { defaults.string(forKey: "widget.browseDay") == todayKey ? defaults.integer(forKey: "widget.monthOffset") : 0 }
+            set {
+                defaults.set(todayKey, forKey: "widget.browseDay")
+                defaults.set(newValue, forKey: "widget.monthOffset")
+            }
         }
-
-        static func nextMonth() {
-            date.nextMonth()
+        static var date: Date {
+            Calendar.gregorian.date(byAdding: .month, value: offset, to: Date().startOfMonth) ?? .now
         }
-
-        static func today() {
-            date = .now
-        }
-
+        static func lastMonth() { offset -= 1 }
+        static func nextMonth() { offset += 1 }
+        static func today() { offset = 0 }
     }
 
     @MainActor
     struct NextMonthIntent: AppIntent {
-        nonisolated(unsafe) static var title: LocalizedStringResource = "Next Month"
+        nonisolated(unsafe) static var title: LocalizedStringResource = "Tháng sau"
         func perform() async throws -> some IntentResult {
             Store.nextMonth()
+            WidgetCenter.shared.reloadTimelines(ofKind: "AmLich.Month")
             return .result()
         }
     }
-
     @MainActor
     struct LastMonthIntent: AppIntent {
-        nonisolated(unsafe) static var title: LocalizedStringResource = "Last Month"
+        nonisolated(unsafe) static var title: LocalizedStringResource = "Tháng trước"
         func perform() async throws -> some IntentResult {
             Store.lastMonth()
+            WidgetCenter.shared.reloadTimelines(ofKind: "AmLich.Month")
             return .result()
         }
     }
-
     @MainActor
     struct TodayIntent: AppIntent {
-        nonisolated(unsafe) static var title: LocalizedStringResource = "Today"
+        nonisolated(unsafe) static var title: LocalizedStringResource = "Hôm nay"
         func perform() async throws -> some IntentResult {
             Store.today()
+            WidgetCenter.shared.reloadTimelines(ofKind: "AmLich.Month")
             return .result()
         }
     }
 }
-
-#endif

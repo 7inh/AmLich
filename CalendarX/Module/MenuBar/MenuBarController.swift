@@ -58,6 +58,7 @@ extension MenubarController {
     }
 
     private func setupMenubarButton() {
+        menubarButton?.toolTip = "Âm Lịch — bấm để xem lịch, bấm phải để cài đặt"
         menubarButton?.imagePosition = .imageOverlaps
         menubarButton?.target = self
         menubarButton?.action = #selector(togglePopover)
@@ -82,6 +83,11 @@ extension MenubarController {
 }
 
 extension MenubarController {
+
+    func showCalendar() {
+        guard let button = menubarButton else { return }
+        popover.showCalendar(from: button)
+    }
 
     private func setupMenubarObservers() {
 

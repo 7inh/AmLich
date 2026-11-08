@@ -3,21 +3,27 @@
 <plist version="1.0">
 <dict>
 	<key>AppVersionName</key>
-	<string>2.3.6</string>
-	<key>NSAppTransportSecurity</key>
-	<dict>
-		<key>NSAllowsArbitraryLoads</key>
-		<true/>
-	</dict>
+	<string>0.1.0</string>
 	<key>NSUserActivityTypes</key>
 	<array>
 		<string>WidgetConfigurationIntent</string>
 	</array>
 	<key>SUEnableAutomaticChecks</key>
 	<false/>
-	<key>SUFeedURL</key>
-	<string>https://zzzm.github.io/CalendarX/appcast.xml</string>
-	<key>SUPublicEDKey</key>
-	<string>IqmAL/4PBUY1LejXocSszpdeqxAMQXLi3ydovPOOvvs=</string>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>vi</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLName</key>
+			<string>vn.7inh.amlich</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>amlich</string>
+			</array>
+		</dict>
+	</array>
+	<key>AmLichAppGroup</key>
+	<string>$(AMLICH_APP_GROUP)</string>
 </dict>
 </plist>

@@ -13,7 +13,7 @@ class MenubarStore: ObservableObject {
    
 
     @AppStorage(MenubarStorageKey.style, store: .group)
-    var style: MenubarStyle = .icon
+    var style: MenubarStyle = .date
 
     // Date Style
     // Use a 24-hour clock
@@ -25,10 +25,10 @@ class MenubarStore: ObservableObject {
     var showSeconds: Bool = false
 
     @AppStorage(MenubarStorageKey.shownTypes, store: .group)
-    var shownTypes: [MenubarDateType] = [.sm, .sd, .e, .t]
+    var shownTypes: [MenubarDateType] = [.ld, .lm]
 
     @AppStorage(MenubarStorageKey.hiddenTypes, store: .group)
-    var hiddenTypes: [MenubarDateType] = [.lm, .ld, .a]
+    var hiddenTypes: [MenubarDateType] = [.sm, .sd, .e, .t, .a]
 
     // Menubar Icon
     @AppStorage(MenubarStorageKey.iconType, store: .group)
@@ -38,7 +38,11 @@ class MenubarStore: ObservableObject {
 extension MenubarStore {
     
     func dateItemTitle(locale: Locale) -> String {
-        shownTypes.generateTitle(locale: locale, transform: transform)
+        if shownTypes == [.ld, .lm] {
+            let lunar = Date().vietnameseLunarDate
+            return "☾ \(lunar.day)/\(lunar.month)" + (lunar.isLeapMonth ? " N" : "")
+        }
+        return shownTypes.generateTitle(locale: locale, transform: transform)
     }
     
     private func transform(locale: Locale, type: MenubarDateType) -> String {

@@ -5,8 +5,9 @@ let version = "0.0.1"
 
 let package = Package(
     name: "CalendarXLib",
+    defaultLocalization: "vi",
     platforms: [
-        .macOS(.v11)
+        .macOS(.v14)
     ],
     products: [
         .library(
@@ -24,6 +25,7 @@ let package = Package(
             swiftSettings: [
                 .enableUpcomingFeature("StrictConcurrency")
             ]
-        )
+        ),
+        .testTarget(name: "CalendarXLibTests", dependencies: ["CalendarXLib"], path: "Tests")
     ]
 )

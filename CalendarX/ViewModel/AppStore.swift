@@ -18,7 +18,7 @@ class AppStore: ObservableObject {
     var appearance: Appearance = .default
 
     @AppStorage(AppStorageKey.language, store: .group)
-    var language: Language = .system
+    var language: Language = .vi_VN
 }
 
 

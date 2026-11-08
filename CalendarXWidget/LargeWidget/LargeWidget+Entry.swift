@@ -6,10 +6,13 @@ extension LargeWidget {
 
     @dynamicMemberLookup
     struct Entry: TimelineEntry {
-        let date: Date, configuration: Provider.Intent
+        let date: Date
+        let displayedDate: Date
+        let configuration: Provider.Intent
 
-        init(date: Date = Date(), configuration: Provider.Intent = .init()) {
+        init(date: Date = Date(), displayedDate: Date? = nil, configuration: Provider.Intent = .init()) {
             self.date = date
+            self.displayedDate = displayedDate ?? date
             self.configuration = configuration
         }
 

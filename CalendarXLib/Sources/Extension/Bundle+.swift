@@ -61,7 +61,7 @@ extension ProcessInfo {
         
         
         var version = "\(os.majorVersion).\(os.minorVersion)"
-        if !os.patchVersion.isMultiple(of: 0) {
+        if os.patchVersion != 0 {
             version += ".\(os.patchVersion)"
         }
    

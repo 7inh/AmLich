@@ -32,7 +32,7 @@ struct AboutScreen: View {
 
             Image(nsImage: NSApp.applicationIconImage)
 
-            Text(Bundle.appName)
+            Text("Âm Lịch")
                 .font(.title)
                 .bold()
 
@@ -46,12 +46,21 @@ struct AboutScreen: View {
             }
             .appForeground(.appSecondary)
 
+            Text("Phát triển từ CalendarX · AGPL-3.0")
+                .font(.caption)
+                .foregroundStyle(.secondary)
+            Link("Mã nguồn CalendarX", destination: URL(string: "https://github.com/ZzzM/CalendarX")!)
+                .font(.caption)
+            Text("Thêm widget: nhấp phải desktop → Sửa tiện ích → Âm Lịch.")
+                .font(.caption)
+                .multilineTextAlignment(.center)
+                .padding(.top, 8)
             Spacer()
             Text(Bundle.copyright)
                 .font(.footnote)
                 .appForeground(.appSecondary)
         }
-        .frame(height: .mainHeight, alignment: .top)
+        .frame(maxHeight: .infinity, alignment: .top)
         .padding()
     }
 }

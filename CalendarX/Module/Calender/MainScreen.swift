@@ -33,7 +33,21 @@ struct MainScreen: View {
 
     var body: some View {
 
-        CalendarView(
+        VStack(spacing: 12) {
+            HStack(alignment: .top) {
+                LunarSummaryView(date: Date())
+                Button {
+                    router.push(.settings)
+                } label: {
+                    Image(systemName: "gearshape")
+                }
+                .buttonStyle(.plain)
+                .help("Cài đặt")
+            }
+            .padding(12)
+            .background(Color.accentColor.opacity(0.06), in: RoundedRectangle(cornerRadius: 12))
+
+            CalendarView(
             date: viewModel.date,
             calendar: calendar,
             eventStore: eventStore,
@@ -43,9 +57,20 @@ struct MainScreen: View {
             subtitle: subtitle,
             leading: leading,
             element: element
-        )
-        .equatable()
-        .frame(height: .mainHeight, alignment: .top)
+            )
+            .frame(height: 300, alignment: .top)
+
+            HStack {
+                Text("UTC+7 · Lịch Việt Nam")
+                    .font(.caption2)
+                    .foregroundStyle(.secondary)
+                Spacer()
+                Button("Hôm nay", action: viewModel.reset)
+                    .buttonStyle(.plain)
+                    .font(.caption.weight(.semibold))
+                    .foregroundStyle(Color.accentColor)
+            }
+        }
         .padding()
     }
 
@@ -151,6 +176,8 @@ struct MainScreen: View {
             }
             .opacity(inSameMonth ? 1 : 0.3)
             .sideLength(40)
+            .accessibilityLabel("\(appDate.day)/\(appDate.month), âm lịch \(appDate.lunarDay)/\(appDate.lunarMonth)")
+            .help(festivalStore.all(date: appDate).joined(separator: ", "))
         }
     }
 }

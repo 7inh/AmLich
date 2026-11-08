@@ -55,6 +55,14 @@ struct DateScreen: View {
                 router.google(festival)
             }
             EventsView(events: events, showEvents: calendarStore.showEvents)
+            Text("Ngày \(appDate.canChiDay) · Tháng \(appDate.vietnameseLunarDate.monthName)")
+                .font(.caption)
+                .foregroundStyle(.secondary)
+            Button("Sao chép ngày âm") {
+                NSPasteboard.general.clearContents()
+                NSPasteboard.general.setString("\(appDate.lunarDateTitle), \(appDate.lunarYearTitle)", forType: .string)
+            }
+            .buttonStyle(.bordered)
         }
         .padding()
 

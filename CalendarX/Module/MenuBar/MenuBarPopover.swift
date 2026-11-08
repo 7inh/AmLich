@@ -23,7 +23,7 @@ class MenubarPopover: NSPopover {
         super.init()
         contentViewController = NSHostingController(rootView: rootScreen)
         contentSize = .init(width: .mainWidth, height: .mainHeight)
-        shouldHideAnchor()
+        behavior = .transient
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -46,11 +46,19 @@ class MenubarPopover: NSPopover {
         stopEventMonitor()
     }
 
+    func showCalendar(from button: NSStatusBarButton) {
+        router.set(.calendar)
+        show(relativeTo: button.bounds, of: button, preferredEdge: .minY)
+        contentViewController?.view.window?.becomeKey()
+        startEventMonitor()
+    }
+
 }
 
 extension MenubarPopover {
 
     func startEventMonitor() {
+        stopEventMonitor()
         eventMonitor = NSEvent.addGlobalMonitorForEvents(matching: [.leftMouseDown, .rightMouseDown]) { [weak self] _ in
             guard let self else { return }
             guard isShown else { return }

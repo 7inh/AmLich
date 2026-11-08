@@ -37,10 +37,10 @@ extension WidgetConfigurationIntent {
     }
 
     var locale: Locale {
-        Language(rawValue: language.rawValue - 1)?.locale ?? .current
+        Language(rawValue: language.rawValue - 1)?.locale ?? .vi
     }
 
     var firstWeekday: AppWeekday {
-        AppWeekday(rawValue: startWeekOn.rawValue) ?? .sunday
+        AppWeekday(rawValue: startWeekOn.rawValue) ?? .monday
     }
 }

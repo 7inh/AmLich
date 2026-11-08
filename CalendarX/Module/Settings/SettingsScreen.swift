@@ -49,12 +49,10 @@ struct SettingsScreen: View {
                 languageRow
                 memubarRow
                 launchRow
-                recommendRow
-                updateRow
                 aboutRow
             }
         }
-        .frame(height: .mainHeight, alignment: .top)
+        .frame(maxHeight: .infinity, alignment: .top)
         .padding()
 
     }
@@ -78,7 +76,7 @@ extension SettingsScreen {
         SettingsPickerRow(
             title: L10n.Settings.language,
             items: Language.allCases,
-            width: 70,
+            width: 105,
             selection: $appStore.language
         ) { Text($0.title) }
     }

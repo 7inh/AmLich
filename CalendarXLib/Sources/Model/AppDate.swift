@@ -14,6 +14,7 @@ extension AppDateFormatter {
 
     static func monthSymbol(index: Int, locale: Locale) -> String {
         shared.locale = locale
+        if locale.identifier.hasPrefix("vi") { return "Tháng \(index + 1)" }
         return shared.shortMonthSymbols[index]
     }
 
@@ -29,6 +30,7 @@ extension AppDateFormatter {
 
     static func shortWeekday(index: Int, locale: Locale) -> String {
         shared.locale = locale
+        if locale.identifier.hasPrefix("vi") { return ["CN", "T2", "T3", "T4", "T5", "T6", "T7"][index] }
         return locale.inChinese
             ? shared.veryShortWeekdaySymbols[index] : shared.shortWeekdaySymbols[index]
     }
@@ -85,26 +87,14 @@ extension AppDate {
 
     public var title: String { day.description }
     public var lunarDateTitle: String {
-        (isLeapMonth ? "[润]" : "") + lunarMonthString + lunarDayString
+        let lunar = vietnameseLunarDate
+        return "Ngày \(lunar.day) tháng \(lunar.month)" + (lunar.isLeapMonth ? " nhuận" : "")
     }
-    public var lunarYearTitle: String {
-
-        let shengxiao = Lunar.shengxiao
-        let tiangan = Lunar.tiangan
-        let dizhi = Lunar.dizhi
-
-        let sIndex = (lunarYear - 1) % shengxiao.count
-        let tIndex = (lunarYear - 1) % tiangan.count
-        let dIndex = (lunarYear - 1) % dizhi.count
-
-        return tiangan[tIndex] + dizhi[dIndex] + shengxiao[sIndex] + "年"
-    }
-    private var lunarMonthString: String { Lunar.months[lunarMonth - 1] }
-    private var lunarDayString: String { Lunar.days[lunarDay - 1] }
-
-    private var lunarMonthTitle: String { (isLeapMonth ? "润" : "") + lunarMonthString }
-
-    var lunarDayTitle: String { lunarDay == 1 ? lunarMonthTitle : lunarDayString }
+    public var lunarYearTitle: String { "Năm " + vietnameseLunarDate.yearName }
+    public var canChiDay: String { VietnameseLunarCalendar.dayName(self) }
+    private var lunarMonthString: String { "T\(lunarMonth)" + (isLeapMonth ? "N" : "") }
+    private var lunarDayString: String { "\(lunarDay)" }
+    var lunarDayTitle: String { lunarDay == 1 ? "1/\(lunarMonth)" + (isLeapMonth ? "N" : "") : lunarDayString }
     var sYKey: String { year.description }
     var sMDKey: String { String(format: "%02d%02d", month, day) }
     var sMWKey: String { String(format: "%02d%d%d", month, weekdayOrdinal, weekday) }
@@ -124,6 +114,7 @@ extension AppDate {
     public func weekOfYearTitle(calendar: Calendar, locale: Locale) -> String {
         let weekday = AppDateFormatter.weekday(index: weekday - 1, locale: locale)
         let weekOfYear = weekOfYearString(calendar: calendar)
+        if locale.identifier.hasPrefix("vi") { return "\(weekday), tuần \(weekOfYear)" }
         return locale.inChinese
             ? "第\(weekOfYear)周 \(weekday)" : "Week \(weekOfYear), \(weekday)"
     }
