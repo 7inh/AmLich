@@ -16,6 +16,9 @@ class MainViewModel: ObservableObject {
 
     @Published
     var date: Date
+
+    @Published
+    var selected = Date()
     
     var calendar: Calendar = .gregorian
 
@@ -56,6 +59,7 @@ class MainViewModel: ObservableObject {
 
     func reset() {
         date = Date()
+        selected = Date()
     }
 
 }

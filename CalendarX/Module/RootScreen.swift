@@ -35,7 +35,8 @@ struct RootScreen: View {
             dialogScreen
 
         }
-        .frame(width: .mainWidth, height: .mainHeight)
+        .frame(width: router.isWide ? .calendarWidth : .mainWidth)
+        .frame(height: router.isWide ? nil : .mainHeight)
         .appForeground(.appPrimary)
         .preferredLocale(appStore.locale)
         .envTint(appStore.accentColor)
@@ -57,13 +58,18 @@ extension RootScreen {
     }
 
     @ViewBuilder
-    private var background: some View { appStore.backgroundColor.padding(.top, -15) }
+    private var background: some View { Color.clear }
 
     @ViewBuilder
-    private var baseScreen: some View { screen(from: router.root) }
+    private var baseScreen: some View {
+        let covered: Bool = if case .empty = router.top { false } else { true }
+        return screen(from: router.root)
+            .opacity(covered ? 0 : 1)
+            .allowsHitTesting(!covered)
+    }
 
     @ViewBuilder
-    private var topScreen: some View { screen(from: router.top).fullScreenCover(appStore.backgroundColor) }
+    private var topScreen: some View { screen(from: router.top).transition(.move(edge: .trailing)).zIndex(1) }
 
     @ViewBuilder
     private func screen(from path: Router.Screen) -> some View {

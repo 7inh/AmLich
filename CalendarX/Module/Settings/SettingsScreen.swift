@@ -29,11 +29,11 @@ struct SettingsScreen: View {
 
         VStack(spacing: spacing) {
             TitleView {
-                Text(L10n.Settings.title).onTapGesture {
+                Text(L10n.Settings.title)
+            } leftItems: {
+                ScacleImageButton(image: .backward) {
                     router.pop()
                 }
-            } leftItems: {
-                EmptyView()
             } rightItems: {
                 ScacleImageButton(image: .quit) {
                     dialog.popup(.exit) {
@@ -172,12 +172,6 @@ struct SettingsPickerRow<Item: Hashable, Label: View>: View {
     @ViewBuilder
     let itemLabel: (Item) -> Label
 
-    @State
-    private var isPresented = false
-
-    @EnvironmentObject
-    private var appStore: AppStore
-
     init(
         title: LocalizedStringKey,
         items: [Item],
@@ -193,23 +187,11 @@ struct SettingsPickerRow<Item: Hashable, Label: View>: View {
     }
 
     var body: some View {
-        HStack {
+        Picker(selection: $selection) {
+            ForEach(items, id: \.self) { itemLabel($0).tag($0) }
+        } label: {
             Text(title).font(.title3)
-            Spacer()
-            ScacleButtonPicker(
-                items: items,
-                tint: appStore.accentColor,
-                width: width,
-                selection: $selection,
-                isPresented: $isPresented,
-                label: {
-                    HStack {
-                        itemLabel(selection).appForeground(.appSecondary)
-                        RotationArrow(isPresented: $isPresented)
-                    }
-                },
-                itemLabel: itemLabel
-            )
         }
+        .pickerStyle(.menu)
     }
 }

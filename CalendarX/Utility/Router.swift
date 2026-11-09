@@ -24,6 +24,12 @@ class Router: ObservableObject {
 
     var root: Screen { path.first ?? .empty }
 
+    /// The calendar home screen uses the wide two-pane layout; every other screen keeps the narrow one.
+    var isWide: Bool {
+        if case .calendar = root, case .empty = top { return true }
+        return false
+    }
+
     var top: Screen { path.count > 1 ? path.last! : .empty }
 
     func set(_ root: Screen) {

@@ -49,9 +49,8 @@ struct ScacleCapsuleButton: View {
             Text(title)
                 .frame(maxWidth: .infinity)
                 .padding(.vertical, 5)
-                .background(backgroundColor)
+                .background(backgroundColor, in: .capsule)
                 .appForeground(foregroundColor)
-                .clipShape(.capsule)
         }
     }
 }

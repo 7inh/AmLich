@@ -14,6 +14,9 @@ public typealias FailureClosure = (Error) -> Void
 extension CGFloat {
     public static let mainHeight: CGFloat = 590
     public static let mainWidth: CGFloat = 365
+    public static let calendarWidth: CGFloat = 580
+    public static let calendarHeight: CGFloat = 440
+    public static let detailWidth: CGFloat = 250
     public static let popoverWidth: CGFloat = 40
     public static let popoverHeight: CGFloat = 210
     public static let popoverRowHeight: CGFloat = 25
@@ -74,6 +77,7 @@ public enum CalendarStorageKey {
     public static let showEvents = generate("showEvents")
     public static let showWeekNumbers = generate("showWeekNumbers")
     public static let showLunar = generate("showLunar")
+    public static let moonPhase = generate("moonPhase")
     public static let showHolidays = generate("showHolidays")
     public static let keyboardShortcut = generate("keyboardShortcut")
     private static func generate(_ key: String) -> String { "\(Bundle.appName).calendar.\(key)" }
@@ -125,8 +129,8 @@ extension Color {
     
     public static let appWhite = Color(hex: "EEEEEE") ?? .white
     
-    public static let appPrimary = Color(lightHex: "555555", darkHex: "EEEEEE")
-    public static let appSecondary = Color(lightHex: "8f8f8f", darkHex: "777777")
+    public static let appPrimary = Color.primary
+    public static let appSecondary = Color.secondary
 
     public static let card = Color(lightHex: "F9F9F9", darkHex: "393939")
 

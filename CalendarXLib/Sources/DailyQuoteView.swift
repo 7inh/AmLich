@@ -18,11 +18,11 @@ public struct DailyQuoteView<Controls: View>: View {
                 Spacer(minLength: 0)
                 controls
             }
-            .font(.system(size: 10, weight: .semibold))
+            .font(.caption.weight(.semibold))
             .foregroundStyle(Color.accentColor)
 
             Text(verbatim: quote.text)
-                .font(.system(size: compact ? 12 : 13, design: .serif))
+                .font(compact ? .footnote.leading(.standard) : .body).fontDesign(.serif)
                 .lineSpacing(compact ? 1 : 2)
                 .lineLimit(compact ? 6 : 4)
                 .minimumScaleFactor(0.85)
@@ -30,7 +30,7 @@ public struct DailyQuoteView<Controls: View>: View {
 
             HStack(alignment: .bottom) {
                 Text(verbatim: "— " + quote.author)
-                    .font(.system(size: 10))
+                    .font(.caption)
                     .foregroundStyle(.secondary)
                     .lineLimit(2)
                     .fixedSize(horizontal: false, vertical: true)

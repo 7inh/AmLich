@@ -78,7 +78,7 @@ struct FestivalsView: View {
     private let textSpacing: CGFloat = 5
     private let textFont: Font = .caption2
     private let textStyle: NSFont.TextStyle = .caption2
-    private let maxWidth: CGFloat = .mainWidth - 20
+    private let maxWidth: CGFloat = .detailWidth - 8
 
     init(festivals: [String], action: @escaping (String) -> Void) {
         self.action = action

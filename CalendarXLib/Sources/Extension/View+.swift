@@ -106,7 +106,7 @@ struct CheckboxStyle: ToggleStyle {
 
 extension View {
     public func checkboxStyle() -> some View {
-        toggleStyle(CheckboxStyle())
+        toggleStyle(.switch)
     }
 
     public func scaleStyle() -> some View {

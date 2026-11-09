@@ -6,6 +6,8 @@
 //
 
 import AppKit
+import CalendarXLib
+import Combine
 import SwiftUI
 
 @MainActor
@@ -15,15 +17,33 @@ class MenubarPopover: NSPopover {
 
     private var eventMonitor: Any?
 
+    private var cancellables = Set<AnyCancellable>()
+
     private let router: Router
 
     init<Content>(_ router: Router, rootScreen: Content) where Content: View {
-
         self.router = router
         super.init()
-        contentViewController = NSHostingController(rootView: rootScreen)
-        contentSize = .init(width: .mainWidth, height: .mainHeight)
+        let host = NSHostingController(rootView: rootScreen)
+        host.sizingOptions = [.preferredContentSize]  // popover height follows the content
+        contentViewController = host
         behavior = .transient
+        syncAppearance()
+        NotificationCenter.default.publisher(for: UserDefaults.didChangeNotification)
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] _ in self?.syncAppearance() }
+            .store(in: &cancellables)
+    }
+
+    /// The popover window follows the menu bar's appearance, which can differ from the app theme,
+    /// so pin it explicitly to keep the material and the SwiftUI content in agreement.
+    private func syncAppearance() {
+        let theme = Theme(rawValue: UserDefaults.group?.integer(forKey: AppStorageKey.theme) ?? 0) ?? .system
+        appearance = switch theme {
+        case .light: NSAppearance(named: .aqua)
+        case .dark: NSAppearance(named: .darkAqua)
+        default: nil
+        }
     }
 
     required init?(coder aDecoder: NSCoder) {
