@@ -15,7 +15,7 @@ public struct LunarSummaryView: View {
         VStack(alignment: .leading, spacing: compact ? 8 : 10) {
             HStack {
                 Image(systemName: "moon.stars.fill")
-                Text("Vietnamese lunar calendar · UTC+7", bundle: .module)
+                Text("Vietnamese lunar calendar", bundle: .module)
                     .font(.system(size: 10, weight: .semibold))
                     .lineLimit(1)
                     .minimumScaleFactor(0.8)
@@ -83,7 +83,7 @@ public struct LunarDayContentView<Controls: View>: View {
     private var dateStamp: some View {
         let lunar = date.vietnameseLunarDate
         return VStack(alignment: .leading, spacing: 6) {
-            Label("ÂM LỊCH · UTC+7", systemImage: "moon.stars.fill")
+            Label("ÂM LỊCH", systemImage: "moon.stars.fill")
                 .font(.system(size: 8, weight: .semibold))
                 .foregroundStyle(Color.accentColor)
                 .lineLimit(1)

@@ -63,7 +63,7 @@ Hoặc build và đóng gói trên Terminal với team đã cấu hình:
 TEAM_ID=YOUR_TEAM_ID scripts/build-macos.sh
 ```
 
-Kết quả: `dist/AmLich.app` và `dist/AmLich-0.2.1-macOS.zip`.
+Kết quả: `dist/AmLich.app` và `dist/AmLich-0.2.2-macOS.zip`.
 Nếu Xcode báo Mac chưa được đăng ký trong team, đăng ký máy trong Xcode trước.
 Chạy `scripts/build-macos.sh` không truyền TEAM_ID chỉ biên dịch không ký mã,
 phù hợp CI; muốn chạy widget cần bản đã ký bằng team của bạn.
