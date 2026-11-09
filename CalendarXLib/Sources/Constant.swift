@@ -5,7 +5,9 @@
 //  Created by zm on 2020/6/22.
 //  Copyright © 2020 zzzm. All rights reserved.
 //
+#if canImport(AppKit)
 import AppKit
+#endif
 import SwiftUI
 
 public typealias VoidClosure = () -> Void
@@ -83,11 +85,13 @@ public enum CalendarStorageKey {
     private static func generate(_ key: String) -> String { "\(Bundle.appName).calendar.\(key)" }
 }
 
+#if os(macOS)
 @MainActor
 extension NSFont {
     public static let statusItem = NSFont.monospacedDigitSystemFont(ofSize: 13, weight: .regular)
     public static let statusIcon = NSFont.monospacedDigitSystemFont(ofSize: 9, weight: .bold)
 }
+#endif
 
 extension Image {
     public static let quit = Image(systemName: "escape")

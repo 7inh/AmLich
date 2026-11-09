@@ -13,13 +13,7 @@ extension View {
 
     @ViewBuilder
     public func focusDisabled(_ disabled: Bool = true) -> some View {
-        if #available(macOS 14.0, *) {
-            focusEffectDisabled(disabled)
-        } else if #available(macOS 12.0, *) {
-            focusable(!disabled)
-        } else {
-            focusable(!disabled, onFocusChange: { _ in })
-        }
+        focusEffectDisabled(disabled)
     }
 
     @ViewBuilder

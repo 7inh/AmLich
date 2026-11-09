@@ -5,11 +5,19 @@
 //  Created by zm on 2022/4/25.
 //
 
-import AppKit
 import SwiftUI
+
+#if canImport(AppKit)
+import AppKit
+typealias PlatformColor = NSColor
+#else
+import UIKit
+typealias PlatformColor = UIColor
+#endif
 
 extension Color {
     public init(lightHex: String, darkHex: String) {
+        #if canImport(AppKit)
         self.init(
             ns: .init(name: .none) {
                 return switch $0.bestMatch(from: [.aqua, .darkAqua]) {
@@ -18,6 +26,14 @@ extension Color {
                 }
             }
         )
+        #else
+        self.init(
+            uiColor: UIColor { traits in
+                traits.userInterfaceStyle == .dark
+                    ? (UIColor(hex: darkHex) ?? .white) : (UIColor(hex: lightHex) ?? .black)
+            }
+        )
+        #endif
     }
 
     public init?(hex: String) {
@@ -60,6 +76,7 @@ extension Color {
         self.init(red: r, green: g, blue: b, opacity: a)
     }
 
+    #if canImport(AppKit)
     public init(ns color: NSColor) {
         if #available(macOS 12.0, *) {
             self.init(nsColor: color)
@@ -67,6 +84,7 @@ extension Color {
             self.init(color)
         }
     }
+    #endif
 
     public init(cg color: CGColor) {
         if #available(macOS 12.0, *) {
@@ -78,7 +96,7 @@ extension Color {
 
 }
 
-extension NSColor {
+extension PlatformColor {
     convenience init?(hex: String) {
         var hexSanitized = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
         if hexSanitized.hasPrefix("#") { hexSanitized.removeFirst() }

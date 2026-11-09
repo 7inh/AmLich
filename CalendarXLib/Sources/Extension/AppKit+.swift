@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+#if os(macOS)
 extension NSView {
     static var nibName: String {
         return String(describing: Self.self)
@@ -34,6 +35,7 @@ extension NSEvent {
         type == .rightMouseDown || modifierFlags.contains(.control)
     }
 }
+#endif
 
 extension Array {
     public var isNotEmpty: Bool { !isEmpty }

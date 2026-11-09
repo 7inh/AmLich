@@ -7,7 +7,8 @@ let package = Package(
     name: "CalendarXLib",
     defaultLocalization: "vi",
     platforms: [
-        .macOS(.v14)
+        .macOS(.v14),
+        .iOS(.v17)
     ],
     products: [
         .library(

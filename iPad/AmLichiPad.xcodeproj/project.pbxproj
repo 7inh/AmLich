@@ -1,0 +1,585 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		209DB79A65FD5F1664988428 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C89E959C0DC1C0A223316EF /* HomeView.swift */; };
+		26B04DC55C66C1FE710DCFB1 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7637418F81A9C3BF1EA70585 /* SettingsView.swift */; };
+		2A84537E5EA55DC79953D1AC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D40F0B99DAA6F091D04F9903 /* Assets.xcassets */; };
+		3D96ED72EE259ABC6DA4B6AF /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D2E3A42ED2AAC84051557A /* MainViewModel.swift */; };
+		3F44F167850CA5E7BDC2F6B8 /* Authorizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DBDA90AFF425B4A228F41E1 /* Authorizer.swift */; };
+		5392FE6E93475B8536DEB5D4 /* AmLichApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4291AC9D5A936A41D1E2EBE7 /* AmLichApp.swift */; };
+		64A378E5883EF03C38726C6C /* AppStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C96A794A52BE5E05A8660925 /* AppStore.swift */; };
+		6EB49C9BE9A95435B74132D4 /* CalendarStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA277397BCBE2A4D68D3C1C /* CalendarStore.swift */; };
+		9EAF0F3E5801A0B462FEB75A /* CalendarXLib in Frameworks */ = {isa = PBXBuildFile; productRef = E6D594CF73792D91C4A65361 /* CalendarXLib */; };
+		A41B7B3DCA3A0DC8EC6313C7 /* CalendarXLib in Frameworks */ = {isa = PBXBuildFile; productRef = 4671EA5481820CC431A0973C /* CalendarXLib */; };
+		BF41C9703250E11C585ABEE8 /* Appearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF92304407DBC59FCF114735 /* Appearance.swift */; };
+		DE90DDB16C42F70BF0A6EA17 /* AmLichWidget.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = ED3F5E83F3849AC2932521DC /* AmLichWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		FF394A5FF2DE32BDA2F1BD85 /* AmLichWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81FC8286C1FEDAA8D8BDB164 /* AmLichWidgetBundle.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		8233AF87231F442A30306D42 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 38C415220F3D022A8DDC8924 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 556F04C9562E938CCCADE040;
+			remoteInfo = AmLichWidget;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		C33E054C68A976BF2F4434C5 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				DE90DDB16C42F70BF0A6EA17 /* AmLichWidget.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		0C89E959C0DC1C0A223316EF /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		1AA277397BCBE2A4D68D3C1C /* CalendarStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarStore.swift; sourceTree = "<group>"; };
+		21461EA1FBB66F8993B3F531 /* AmLich.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AmLich.entitlements; sourceTree = "<group>"; };
+		3815C007E85A7A2C56B71597 /* AmLichWidget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AmLichWidget.entitlements; sourceTree = "<group>"; };
+		4291AC9D5A936A41D1E2EBE7 /* AmLichApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmLichApp.swift; sourceTree = "<group>"; };
+		5DBDA90AFF425B4A228F41E1 /* Authorizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Authorizer.swift; sourceTree = "<group>"; };
+		72240344E070A9AEEDC93FCF /* CalendarXLib */ = {isa = PBXFileReference; lastKnownFileType = folder; name = CalendarXLib; path = ../CalendarXLib; sourceTree = SOURCE_ROOT; };
+		7637418F81A9C3BF1EA70585 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		81FC8286C1FEDAA8D8BDB164 /* AmLichWidgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmLichWidgetBundle.swift; sourceTree = "<group>"; };
+		868C59E91C8EB2A1ACD8FB51 /* AmLichiPad.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = AmLichiPad.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B1D2E3A42ED2AAC84051557A /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
+		B77F03711C68B5F0C4EF5C64 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		BC655249BF896D0FD4D13F17 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		C96A794A52BE5E05A8660925 /* AppStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStore.swift; sourceTree = "<group>"; };
+		D40F0B99DAA6F091D04F9903 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		ED3F5E83F3849AC2932521DC /* AmLichWidget.appex */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = "wrapper.app-extension"; path = AmLichWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		FF92304407DBC59FCF114735 /* Appearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Appearance.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		6AF27C99682F7C609A62617C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9EAF0F3E5801A0B462FEB75A /* CalendarXLib in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C407EB44BDF9814DD973C211 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A41B7B3DCA3A0DC8EC6313C7 /* CalendarXLib in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		07BDC95AF1BA9AEBB9B691AB /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				C96A794A52BE5E05A8660925 /* AppStore.swift */,
+				1AA277397BCBE2A4D68D3C1C /* CalendarStore.swift */,
+				B1D2E3A42ED2AAC84051557A /* MainViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		204E4DB6DA7A8EF783426ACA /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				72240344E070A9AEEDC93FCF /* CalendarXLib */,
+			);
+			name = Packages;
+			sourceTree = "<group>";
+		};
+		21A92E98E416E0A534292E4E /* AmLich */ = {
+			isa = PBXGroup;
+			children = (
+				B25BDEA7F28669500CE74175 /* CalendarX */,
+			);
+			name = AmLich;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		243C9987AD4F2BDD70BD3D4B /* App */ = {
+			isa = PBXGroup;
+			children = (
+				21461EA1FBB66F8993B3F531 /* AmLich.entitlements */,
+				4291AC9D5A936A41D1E2EBE7 /* AmLichApp.swift */,
+				D40F0B99DAA6F091D04F9903 /* Assets.xcassets */,
+				0C89E959C0DC1C0A223316EF /* HomeView.swift */,
+				BC655249BF896D0FD4D13F17 /* Info.plist */,
+				7637418F81A9C3BF1EA70585 /* SettingsView.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		2689DF155A794A8059DAD767 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				5DBDA90AFF425B4A228F41E1 /* Authorizer.swift */,
+			);
+			path = Utility;
+			sourceTree = "<group>";
+		};
+		80E35C07B11E9DC835640889 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				FF92304407DBC59FCF114735 /* Appearance.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		B25BDEA7F28669500CE74175 /* CalendarX */ = {
+			isa = PBXGroup;
+			children = (
+				80E35C07B11E9DC835640889 /* Model */,
+				2689DF155A794A8059DAD767 /* Utility */,
+				07BDC95AF1BA9AEBB9B691AB /* ViewModel */,
+			);
+			path = CalendarX;
+			sourceTree = "<group>";
+		};
+		EBBD47877C35093E6527DD8B = {
+			isa = PBXGroup;
+			children = (
+				21A92E98E416E0A534292E4E /* AmLich */,
+				243C9987AD4F2BDD70BD3D4B /* App */,
+				204E4DB6DA7A8EF783426ACA /* Packages */,
+				FBA750ECD17DFA15B4297AB3 /* Widget */,
+				FAC37BE89B7F2FEE8ED32A3E /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		FAC37BE89B7F2FEE8ED32A3E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				868C59E91C8EB2A1ACD8FB51 /* AmLichiPad.app */,
+				ED3F5E83F3849AC2932521DC /* AmLichWidget.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		FBA750ECD17DFA15B4297AB3 /* Widget */ = {
+			isa = PBXGroup;
+			children = (
+				3815C007E85A7A2C56B71597 /* AmLichWidget.entitlements */,
+				81FC8286C1FEDAA8D8BDB164 /* AmLichWidgetBundle.swift */,
+				B77F03711C68B5F0C4EF5C64 /* Info.plist */,
+			);
+			path = Widget;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		009D4360A63FA206DEE7A037 /* AmLichiPad */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4A35A2AA50202DFF53072F18 /* Build configuration list for PBXNativeTarget "AmLichiPad" */;
+			buildPhases = (
+				DB3146720C468499F4E50D28 /* Sources */,
+				D1C646A526AA1ADE46FB0FF0 /* Resources */,
+				C407EB44BDF9814DD973C211 /* Frameworks */,
+				C33E054C68A976BF2F4434C5 /* Embed Foundation Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A624CB3CDD0C4FD5738D0346 /* PBXTargetDependency */,
+			);
+			name = AmLichiPad;
+			packageProductDependencies = (
+				4671EA5481820CC431A0973C /* CalendarXLib */,
+			);
+			productName = AmLichiPad;
+			productReference = 868C59E91C8EB2A1ACD8FB51 /* AmLichiPad.app */;
+			productType = "com.apple.product-type.application";
+		};
+		556F04C9562E938CCCADE040 /* AmLichWidget */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9E5DF12DEE47ED8C60B11265 /* Build configuration list for PBXNativeTarget "AmLichWidget" */;
+			buildPhases = (
+				E25877ED267BDB2E0BDE6629 /* Sources */,
+				6AF27C99682F7C609A62617C /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AmLichWidget;
+			packageProductDependencies = (
+				E6D594CF73792D91C4A65361 /* CalendarXLib */,
+			);
+			productName = AmLichWidget;
+			productReference = ED3F5E83F3849AC2932521DC /* AmLichWidget.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		38C415220F3D022A8DDC8924 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					009D4360A63FA206DEE7A037 = {
+						DevelopmentTeam = NK8KQXCK9X;
+						ProvisioningStyle = Automatic;
+					};
+					556F04C9562E938CCCADE040 = {
+						DevelopmentTeam = NK8KQXCK9X;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = BCE2FB8AA89C7A88F811A5FC /* Build configuration list for PBXProject "AmLichiPad" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = EBBD47877C35093E6527DD8B;
+			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				CCD26E1C11E818BD60FD2B31 /* XCLocalSwiftPackageReference "../CalendarXLib" */,
+			);
+			preferredProjectObjectVersion = 77;
+			productRefGroup = FAC37BE89B7F2FEE8ED32A3E /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				009D4360A63FA206DEE7A037 /* AmLichiPad */,
+				556F04C9562E938CCCADE040 /* AmLichWidget */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		D1C646A526AA1ADE46FB0FF0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2A84537E5EA55DC79953D1AC /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		DB3146720C468499F4E50D28 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5392FE6E93475B8536DEB5D4 /* AmLichApp.swift in Sources */,
+				64A378E5883EF03C38726C6C /* AppStore.swift in Sources */,
+				BF41C9703250E11C585ABEE8 /* Appearance.swift in Sources */,
+				3F44F167850CA5E7BDC2F6B8 /* Authorizer.swift in Sources */,
+				6EB49C9BE9A95435B74132D4 /* CalendarStore.swift in Sources */,
+				209DB79A65FD5F1664988428 /* HomeView.swift in Sources */,
+				3D96ED72EE259ABC6DA4B6AF /* MainViewModel.swift in Sources */,
+				26B04DC55C66C1FE710DCFB1 /* SettingsView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E25877ED267BDB2E0BDE6629 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FF394A5FF2DE32BDA2F1BD85 /* AmLichWidgetBundle.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A624CB3CDD0C4FD5738D0346 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 556F04C9562E938CCCADE040 /* AmLichWidget */;
+			targetProxy = 8233AF87231F442A30306D42 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		1609EEBDD2E6DCB39B05BF5B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = Widget/AmLichWidget.entitlements;
+				INFOPLIST_FILE = Widget/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = vn.7inh.amlich.ipad.widget;
+				PRODUCT_NAME = AmLichWidget;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Release;
+		};
+		191DA15595B1987211FBE162 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = App/AmLich.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = App/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Âm Lịch";
+				INFOPLIST_KEY_NSCalendarsFullAccessUsageDescription = "Hiển thị sự kiện lịch của bạn cùng ngày âm lịch.";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Phát triển từ CalendarX · AGPL-3.0";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = vn.7inh.amlich.ipad;
+				PRODUCT_NAME = AmLich;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		4D76FB468469A249AE9BA0F9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = Widget/AmLichWidget.entitlements;
+				INFOPLIST_FILE = Widget/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = vn.7inh.amlich.ipad.widget;
+				PRODUCT_NAME = AmLichWidget;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Debug;
+		};
+		7D1FFD97A02628A80702A599 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = App/AmLich.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = App/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Âm Lịch";
+				INFOPLIST_KEY_NSCalendarsFullAccessUsageDescription = "Hiển thị sự kiện lịch của bạn cùng ngày âm lịch.";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Phát triển từ CalendarX · AGPL-3.0";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = vn.7inh.amlich.ipad;
+				PRODUCT_NAME = AmLich;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		84369E245881706CF6DE684A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				AMLICH_APP_GROUP = group.vn.7inh.amlich;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = NK8KQXCK9X;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 0.2.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Release;
+		};
+		BBA77685C63757A0E6F3E65C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				AMLICH_APP_GROUP = group.vn.7inh.amlich;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = NK8KQXCK9X;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 0.2.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		4A35A2AA50202DFF53072F18 /* Build configuration list for PBXNativeTarget "AmLichiPad" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				191DA15595B1987211FBE162 /* Debug */,
+				7D1FFD97A02628A80702A599 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		9E5DF12DEE47ED8C60B11265 /* Build configuration list for PBXNativeTarget "AmLichWidget" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4D76FB468469A249AE9BA0F9 /* Debug */,
+				1609EEBDD2E6DCB39B05BF5B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		BCE2FB8AA89C7A88F811A5FC /* Build configuration list for PBXProject "AmLichiPad" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BBA77685C63757A0E6F3E65C /* Debug */,
+				84369E245881706CF6DE684A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		CCD26E1C11E818BD60FD2B31 /* XCLocalSwiftPackageReference "../CalendarXLib" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ../CalendarXLib;
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		4671EA5481820CC431A0973C /* CalendarXLib */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = CalendarXLib;
+		};
+		E6D594CF73792D91C4A65361 /* CalendarXLib */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = CalendarXLib;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 38C415220F3D022A8DDC8924 /* Project object */;
+}

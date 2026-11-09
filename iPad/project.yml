@@ -1,0 +1,92 @@
+name: AmLichiPad
+options:
+  bundleIdPrefix: vn.7inh
+  deploymentTarget:
+    iOS: "17.0"
+  createIntermediateGroups: true
+packages:
+  CalendarXLib:
+    path: ../CalendarXLib
+settings:
+  base:
+    DEVELOPMENT_TEAM: NK8KQXCK9X
+    CODE_SIGN_STYLE: Automatic
+    SWIFT_VERSION: "6.0"
+    SWIFT_STRICT_CONCURRENCY: complete
+    AMLICH_APP_GROUP: group.vn.7inh.amlich
+    TARGETED_DEVICE_FAMILY: "2"
+    MARKETING_VERSION: "0.2.2"
+    CURRENT_PROJECT_VERSION: "1"
+targets:
+  AmLichiPad:
+    type: application
+    platform: iOS
+    sources:
+      - path: App
+      - path: ../CalendarX/ViewModel/AppStore.swift
+      - path: ../CalendarX/ViewModel/CalendarStore.swift
+      - path: ../CalendarX/ViewModel/MainViewModel.swift
+      - path: ../CalendarX/Model/Appearance.swift
+      - path: ../CalendarX/Utility/Authorizer.swift
+    dependencies:
+      - package: CalendarXLib
+      - target: AmLichWidget
+        embed: true
+    settings:
+      base:
+        PRODUCT_NAME: AmLich
+        PRODUCT_BUNDLE_IDENTIFIER: vn.7inh.amlich.ipad
+        INFOPLIST_KEY_CFBundleDisplayName: Âm Lịch
+        GENERATE_INFOPLIST_FILE: YES
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        INFOPLIST_KEY_UILaunchScreen_Generation: YES
+        INFOPLIST_KEY_UIApplicationSceneManifest_Generation: YES
+        INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad: "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight"
+        INFOPLIST_KEY_NSCalendarsFullAccessUsageDescription: Hiển thị sự kiện lịch của bạn cùng ngày âm lịch.
+        INFOPLIST_KEY_NSHumanReadableCopyright: "Phát triển từ CalendarX · AGPL-3.0"
+    info:
+      path: App/Info.plist
+      properties:
+        CFBundleName: AmLich
+        AmLichAppGroup: $(AMLICH_APP_GROUP)
+        AppVersionName: "0.2.2"
+        CFBundleDevelopmentRegion: vi
+        CFBundleURLTypes:
+          - CFBundleURLName: vn.7inh.amlich
+            CFBundleURLSchemes: [amlich]
+    entitlements:
+      path: App/AmLich.entitlements
+      properties:
+        com.apple.security.application-groups: [group.vn.7inh.amlich]
+  AmLichWidget:
+    type: app-extension
+    platform: iOS
+    sources:
+      - path: Widget
+    dependencies:
+      - package: CalendarXLib
+    settings:
+      base:
+        PRODUCT_NAME: AmLichWidget
+        PRODUCT_BUNDLE_IDENTIFIER: vn.7inh.amlich.ipad.widget
+        TARGETED_DEVICE_FAMILY: "2"
+    info:
+      path: Widget/Info.plist
+      properties:
+        CFBundleName: AmLich
+        CFBundleDisplayName: Âm Lịch
+        AmLichAppGroup: $(AMLICH_APP_GROUP)
+        CFBundleDevelopmentRegion: vi
+        NSExtension:
+          NSExtensionPointIdentifier: com.apple.widgetkit-extension
+    entitlements:
+      path: Widget/AmLichWidget.entitlements
+      properties:
+        com.apple.security.application-groups: [group.vn.7inh.amlich]
+schemes:
+  AmLichiPad:
+    build:
+      targets:
+        AmLichiPad: all
+    run:
+      config: Debug
