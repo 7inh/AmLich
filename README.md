@@ -63,7 +63,7 @@ Hoặc build và đóng gói trên Terminal với team đã cấu hình:
 TEAM_ID=YOUR_TEAM_ID scripts/build-macos.sh
 ```
 
-Kết quả: `dist/AmLich.app` và `dist/AmLich-0.2.0-macOS.zip`.
+Kết quả: `dist/AmLich.app` và `dist/AmLich-0.2.1-macOS.zip`.
 Nếu Xcode báo Mac chưa được đăng ký trong team, đăng ký máy trong Xcode trước.
 Chạy `scripts/build-macos.sh` không truyền TEAM_ID chỉ biên dịch không ký mã,
 phù hợp CI; muốn chạy widget cần bản đã ký bằng team của bạn.
@@ -94,7 +94,7 @@ Bản 0.2.0 đóng gói 1.000 câu tiếng Việt ngắn từ
 [trananhtung/danh-ngon](https://github.com/trananhtung/danh-ngon), khóa theo commit
 `d41ef22a98435fd3cbd75298463872d038c658e4`. Bộ lọc loại câu tiếng Anh, câu quá dài,
 câu trùng và một số nội dung không hợp lịch ngày. Bản dịch và tên tác giả theo
-nguồn tổng hợp, chưa được đối chiếu từng câu; nút ↗ trong app dẫn tới dữ liệu nguồn.
+nguồn tổng hợp, chưa được đối chiếu từng câu; liên kết nguồn được giữ trong bộ dữ liệu.
 
 Thứ tự Fisher–Yates dùng seed cố định nên app và các tiến trình widget có cùng
 thứ tự, không cần máy chủ. Ngày được tính theo múi giờ Mac; 0 giờ chọn câu tiếp theo.

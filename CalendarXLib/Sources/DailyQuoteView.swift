@@ -1,16 +1,13 @@
 import SwiftUI
 
 public struct DailyQuoteView<Controls: View>: View {
-    @Environment(\.openURL) private var openURL
     public let quote: DailyQuote
     public let compact: Bool
-    public let showsSourceLink: Bool
     private let controls: Controls
 
-    public init(quote: DailyQuote, compact: Bool = false, showsSourceLink: Bool = true, @ViewBuilder controls: () -> Controls) {
+    public init(quote: DailyQuote, compact: Bool = false, @ViewBuilder controls: () -> Controls) {
         self.quote = quote
         self.compact = compact
-        self.showsSourceLink = showsSourceLink
         self.controls = controls()
     }
 
@@ -18,9 +15,6 @@ public struct DailyQuoteView<Controls: View>: View {
         VStack(alignment: .leading, spacing: compact ? 6 : 8) {
             HStack(spacing: 6) {
                 Image(systemName: "quote.opening")
-                Text("Mỗi ngày một câu")
-                    .lineLimit(1)
-                    .minimumScaleFactor(0.8)
                 Spacer(minLength: 0)
                 controls
             }
@@ -41,18 +35,6 @@ public struct DailyQuoteView<Controls: View>: View {
                     .lineLimit(2)
                     .fixedSize(horizontal: false, vertical: true)
                 Spacer(minLength: 4)
-                if showsSourceLink {
-                    Button {
-                        openURL(quote.sourceURL)
-                    } label: {
-                        Image(systemName: "arrow.up.right")
-                            .font(.system(size: 9))
-                            .foregroundStyle(.secondary)
-                    }
-                    .buttonStyle(.plain)
-                    .help("Xem nguồn danh ngôn")
-                    .accessibilityLabel("Xem nguồn danh ngôn")
-                }
             }
         }
         .foregroundStyle(.primary)
@@ -61,7 +43,7 @@ public struct DailyQuoteView<Controls: View>: View {
 }
 
 extension DailyQuoteView where Controls == EmptyView {
-    public init(quote: DailyQuote, compact: Bool = false, showsSourceLink: Bool = true) {
-        self.init(quote: quote, compact: compact, showsSourceLink: showsSourceLink) { EmptyView() }
+    public init(quote: DailyQuote, compact: Bool = false) {
+        self.init(quote: quote, compact: compact) { EmptyView() }
     }
 }

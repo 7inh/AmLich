@@ -130,10 +130,10 @@ extension CalendarXDelegate {
                 try render(LunarSummaryView(date: Date(), compact: true).padding(16), name: "day-widget-" + suffix, width: 170, height: 170, scheme: scheme)
                 let quote = DailyQuoteStore.quote(for: Date(), advance: 0)
                 let longest = DailyQuoteStore.quotes.max { ($0.text.count + $0.author.count) < ($1.text.count + $1.author.count) }!
-                try render(DailyQuoteView(quote: quote, compact: true, showsSourceLink: false) {
+                try render(DailyQuoteView(quote: quote, compact: true) {
                     Button {} label: { Image(systemName: "shuffle").padding(3) }.buttonStyle(.plain)
                 }.padding(16), name: "quote-widget-" + suffix, width: 170, height: 170, scheme: scheme)
-                try render(DailyQuoteView(quote: longest, compact: true, showsSourceLink: false) {
+                try render(DailyQuoteView(quote: longest, compact: true) {
                     Button {} label: { Image(systemName: "shuffle").padding(3) }.buttonStyle(.plain)
                 }.padding(16), name: "quote-widget-long-" + suffix, width: 170, height: 170, scheme: scheme)
                 try render(LunarDayContentView(date: Date(), quote: quote, showQuote: true) {

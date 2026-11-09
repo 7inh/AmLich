@@ -73,7 +73,7 @@ public struct LunarDayContentView<Controls: View>: View {
                 dateStamp
                     .frame(width: 104, alignment: .leading)
                 Rectangle().fill(.secondary.opacity(0.15)).frame(width: 1)
-                DailyQuoteView(quote: quote, compact: true, showsSourceLink: false) { controls }
+                DailyQuoteView(quote: quote, compact: true) { controls }
             } else {
                 LunarSummaryView(date: date, compact: true)
             }

@@ -88,7 +88,7 @@ struct DailyQuoteEntryView: View {
     let entry: LunarDayEntry
 
     var body: some View {
-        DailyQuoteView(quote: DailyQuoteStore.quote(for: entry.date, advance: quoteAdvance), compact: true, showsSourceLink: false) {
+        DailyQuoteView(quote: DailyQuoteStore.quote(for: entry.date, advance: quoteAdvance), compact: true) {
             Button(intent: ShuffleQuoteIntent()) {
                 Image(systemName: "shuffle").padding(3)
             }

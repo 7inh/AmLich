@@ -80,16 +80,6 @@ struct MainScreen: View {
             )
             .frame(height: 300, alignment: .top)
 
-            HStack {
-                Text("UTC+7 · Lịch Việt Nam")
-                    .font(.caption2)
-                    .foregroundStyle(.secondary)
-                Spacer()
-                Button("Hôm nay", action: viewModel.reset)
-                    .buttonStyle(.plain)
-                    .font(.caption.weight(.semibold))
-                    .foregroundStyle(Color.accentColor)
-            }
         }
         .padding()
     }

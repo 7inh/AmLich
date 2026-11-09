@@ -12,7 +12,7 @@ public typealias VoidClosure = () -> Void
 public typealias FailureClosure = (Error) -> Void
 
 extension CGFloat {
-    public static let mainHeight: CGFloat = 610
+    public static let mainHeight: CGFloat = 590
     public static let mainWidth: CGFloat = 365
     public static let popoverWidth: CGFloat = 40
     public static let popoverHeight: CGFloat = 210
